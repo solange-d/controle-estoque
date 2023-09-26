@@ -3,7 +3,6 @@ package com.controleestoque.service;
 import com.controleestoque.entity.Endereco;
 import com.controleestoque.entity.Fornecedor;
 import com.controleestoque.exceptions.EnderecoNotFoundException;
-import com.controleestoque.exceptions.FornecedorNotFoundException;
 import com.controleestoque.mapper.EnderecoRequestToEntity;
 import com.controleestoque.model.EnderecoRequest;
 import com.controleestoque.model.EnderecoResponse;
@@ -74,8 +73,6 @@ public class EnderecoService {
 
     }
 
-
-
     public void delete(UUID idFornecedor, UUID idEndereco) {
         try {
             getEnderecoById(idEndereco);
@@ -85,16 +82,6 @@ public class EnderecoService {
         }
 
     }
-
-
-
- /*
-
-    public Address getAddressById(Long id){
-        Optional<Address> address = addressRepository.findById(id);
-        return address.orElseThrow(AddressNotFoundException::new);
-    }
-     */
 
 
 }

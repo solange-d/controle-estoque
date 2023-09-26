@@ -30,6 +30,13 @@ public class EnderecoController {
         return enderecoService.getEnderecosByFornecedorId(idFornecedor);
     }
 
+    @GetMapping("/{idEndereco}")
+    public ResponseEntity<Endereco> getEndereco(@PathVariable UUID idEndereco){
+        var RequestedEndereco = enderecoService.getEnderecoById(idEndereco);
+        return new ResponseEntity<>(RequestedEndereco, HttpStatus.OK);
+    }
+
+
     @PutMapping("/fornecedor/{idFornecedor}/{idEndereco}")
     public ResponseEntity<EnderecoResponse> updateEnderecoFornecedor(@PathVariable UUID idFornecedor,
                                                                      @PathVariable UUID idEndereco,
