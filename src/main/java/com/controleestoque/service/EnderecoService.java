@@ -35,7 +35,7 @@ public class EnderecoService {
     }
 
     private Fornecedor updateEnderecosFornecedor(UUID idFornecedor, Endereco endereco){
-        Fornecedor fornecedor = fornecedorService.getFornecedorById(idFornecedor);
+        Fornecedor fornecedor = fornecedorRepository.findById(idFornecedor).get();
         var enderecos = fornecedor.getEnderecos();
         enderecos.add(endereco);
         fornecedor.setEnderecos(enderecos);

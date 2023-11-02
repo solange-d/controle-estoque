@@ -35,12 +35,4 @@ public class Fornecedor implements Serializable {
     @JsonManagedReference
     private List<Endereco> enderecos;
 
-    /*
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
-    @Column(name = "addresses")
-    @JsonManagedReference
-    private List<Address> addresses;
-     */
-
-
 }

@@ -17,6 +17,5 @@ public class FornecedorResponse {
     private String email;
     private int telefone;
     private boolean fabricante;
-    private List<Produto> produtos;
-    private List<Endereco> enderecos;
+
 }

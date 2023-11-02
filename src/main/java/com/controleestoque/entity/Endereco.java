@@ -33,11 +33,4 @@ public class Endereco implements Serializable {
     @JsonBackReference
     private Fornecedor fornecedor;
 
-    /*
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonBackReference
-    private User user;
-     */
-
 }

@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Repository
 public interface EnderecoRepository extends CrudRepository<Endereco, UUID> {
-    // Optional<List<Endereco>> findEnderecoByFornecedor(UUID idFornecedor);
+
     @Query("SELECT e FROM Endereco e WHERE e.fornecedor.idFornecedor = :idFornecedor")
     List<Endereco> findEnderecosByFornecedorId(@Param("idFornecedor") UUID idFornecedor);
 
