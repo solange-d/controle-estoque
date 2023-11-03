@@ -2,12 +2,9 @@ package com.controleestoque.service;
 
 import com.controleestoque.entity.Endereco;
 import com.controleestoque.entity.Fornecedor;
-import com.controleestoque.exceptions.EnderecoNotFoundException;
 import com.controleestoque.exceptions.FornecedorNotFoundException;
 import com.controleestoque.mapper.FornecedorRequestToEntity;
 import com.controleestoque.mapper.FornecedorResponseToEntity;
-import com.controleestoque.model.EnderecoRequest;
-import com.controleestoque.model.EnderecoResponse;
 import com.controleestoque.model.FornecedorRequest;
 import com.controleestoque.model.FornecedorResponse;
 import com.controleestoque.repository.FornecedorRepository;
@@ -40,6 +37,11 @@ public class FornecedorService {
         }
         FornecedorResponse response = fornecedorResponseToEntity.mapper(fornecedor.get());
         return response;
+    }
+
+    public Fornecedor getById(UUID idFornecedor){
+        Optional<Fornecedor> fornecedor = fornecedorRepository.findById(idFornecedor);
+        return fornecedor.orElseThrow(FornecedorNotFoundException::new);
     }
 
 

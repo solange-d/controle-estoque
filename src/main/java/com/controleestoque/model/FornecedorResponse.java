@@ -1,7 +1,5 @@
 package com.controleestoque.model;
 
-import com.controleestoque.entity.Endereco;
-import com.controleestoque.entity.Produto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

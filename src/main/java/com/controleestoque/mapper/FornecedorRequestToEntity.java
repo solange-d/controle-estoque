@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class FornecedorRequestToEntity {
 
     public Fornecedor mapper (FornecedorRequest fornecedorRequest){
-        var fornecedor = new Fornecedor();
+        Fornecedor fornecedor = new Fornecedor();
         BeanUtils.copyProperties(fornecedorRequest, fornecedor);
         return fornecedor;
     }
