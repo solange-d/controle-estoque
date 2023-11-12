@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -29,6 +30,12 @@ public class FornecedorController {
     public ResponseEntity<FornecedorResponse> getFornecedor(@PathVariable UUID idFornecedor){
         var RequestedFornecedor = fornecedorService.getFornecedorById(idFornecedor);
         return new ResponseEntity<>(RequestedFornecedor, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/fornecedores")
+    public List<FornecedorResponse> getAll(){
+        return fornecedorService.getAll();
     }
 
 

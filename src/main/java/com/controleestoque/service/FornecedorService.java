@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -42,6 +43,19 @@ public class FornecedorService {
     public Fornecedor getById(UUID idFornecedor){
         Optional<Fornecedor> fornecedor = fornecedorRepository.findById(idFornecedor);
         return fornecedor.orElseThrow(FornecedorNotFoundException::new);
+    }
+
+
+    public List<FornecedorResponse> getAll() {
+        var fornecedores = fornecedorRepository.findAll();
+        List<FornecedorResponse> fornecedorResponseList = new ArrayList<>();
+
+        for (Fornecedor fornecedor : fornecedores) {
+            FornecedorResponse response = fornecedorResponseToEntity.mapper(fornecedor);
+            fornecedorResponseList.add(response);
+        }
+
+        return fornecedorResponseList;
     }
 
 
