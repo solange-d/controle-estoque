@@ -11,6 +11,6 @@ public class FornecedorRequest {
     private String nome;
     private String cnpj;
     private String email;
-    private int telefone;
+    private String telefone;
     private boolean fabricante;
 }

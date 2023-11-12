@@ -15,6 +15,9 @@ public interface ProdutoRepository extends CrudRepository<Produto, UUID> {
     @Query("SELECT p FROM Produto p JOIN p.fornecedores f WHERE f.idFornecedor = :idFornecedor")
     List<Produto> findAllProdutosByFornecedor(@Param("idFornecedor") UUID idFornecedor);
 
+    @Query("SELECT p FROM Produto p WHERE p.nome = :nome")
+    List<Produto> findProdutosByNome(@Param("nome") String nome);
+
 
 
 }

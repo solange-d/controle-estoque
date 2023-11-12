@@ -1,6 +1,7 @@
 package com.controleestoque.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,16 +23,18 @@ public class Produto implements Serializable {
     private String marca;
     private String nome;
     private String descricao;
-    private int ean;
+    private String ean;
     private double altura;
     private double largura;
     private double comprimento;
     private double peso;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<ItemEstoque> itens;
 
-    @ManyToMany(mappedBy = "produtos")
+    @ManyToMany(mappedBy = "produtos", cascade = CascadeType.REMOVE)
+    @JsonBackReference
     private List<Fornecedor> fornecedores;
 
 }

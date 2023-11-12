@@ -1,6 +1,10 @@
 package com.controleestoque.controller;
 
+import com.controleestoque.entity.Produto;
+import com.controleestoque.exceptions.FornecedorNotFoundException;
 import com.controleestoque.exceptions.ProdutoNotFoundException;
+import com.controleestoque.model.EnderecoRequest;
+import com.controleestoque.model.EnderecoResponse;
 import com.controleestoque.model.ProdutoRequest;
 import com.controleestoque.model.ProdutoResponse;
 import com.controleestoque.service.ProdutoService;
@@ -32,7 +36,7 @@ public class ProdutoController {
     }
 
     @GetMapping("todos/{idFornecedor}")
-    public ResponseEntity<List<ProdutoResponse>> getAll(@PathVariable UUID idFornecedor){
+    public ResponseEntity<List<ProdutoResponse>> getAll(@PathVariable UUID idFornecedor) {
         try {
             List<ProdutoResponse> response = produtoService.getAll(idFornecedor);
             return ResponseEntity.ok(response);
@@ -41,4 +45,36 @@ public class ProdutoController {
         }
     }
 
+    @GetMapping("/{idProduto}")
+    public ResponseEntity<ProdutoResponse> getProduto(@PathVariable UUID idProduto) {
+        var produtoPesquisado = produtoService.getProdutoById(idProduto);
+        return new ResponseEntity<>(produtoPesquisado, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/nome/{nome}")
+    public List<ProdutoResponse> getProdutosByName(@PathVariable String nome) {
+        return produtoService.getProdutosByName(nome);
+    }
+
+    @PutMapping("/fornecedor/{idFornecedor}/produto/{idProduto}")
+    public ResponseEntity<ProdutoResponse> updateProdutoFornecedor(@PathVariable UUID idFornecedor,
+                                                                     @PathVariable UUID idProduto,
+                                                                     @RequestBody ProdutoRequest produto) {
+        produtoService.update(idFornecedor, idProduto, produto);
+        return new ResponseEntity(produto, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/fornecedor/{idFornecedor}/produto/{idProduto}")
+    public ResponseEntity<ProdutoResponse> deleteProdutoFornecedor(@PathVariable UUID idFornecedor, @PathVariable UUID idProduto) {
+        produtoService.delete(idFornecedor, idProduto);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+
 }
+
+
+
+

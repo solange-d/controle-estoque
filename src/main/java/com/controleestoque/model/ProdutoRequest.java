@@ -11,7 +11,7 @@ public class ProdutoRequest {
     private String marca;
     private String nome;
     private String descricao;
-    private int ean;
+    private String ean;
     private double altura;
     private double largura;
     private double comprimento;
