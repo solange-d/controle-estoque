@@ -1,10 +1,6 @@
 package com.controleestoque.controller;
 
-import com.controleestoque.entity.Produto;
-import com.controleestoque.exceptions.FornecedorNotFoundException;
 import com.controleestoque.exceptions.ProdutoNotFoundException;
-import com.controleestoque.model.EnderecoRequest;
-import com.controleestoque.model.EnderecoResponse;
 import com.controleestoque.model.ProdutoRequest;
 import com.controleestoque.model.ProdutoResponse;
 import com.controleestoque.service.ProdutoService;

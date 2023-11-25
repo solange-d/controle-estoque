@@ -1,8 +1,5 @@
 package com.controleestoque.controller;
 
-import com.controleestoque.entity.Fornecedor;
-import com.controleestoque.model.EnderecoRequest;
-import com.controleestoque.model.EnderecoResponse;
 import com.controleestoque.model.FornecedorRequest;
 import com.controleestoque.model.FornecedorResponse;
 import com.controleestoque.service.FornecedorService;
