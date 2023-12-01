@@ -13,10 +13,6 @@ lib/
 *.iws
 .vscode/
 
-# Arquivos de configuração
-application.properties
-application.yml
-
 # Logs
 logs/
 
