@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -25,10 +24,12 @@ public class Saida implements Serializable {
     private LocalDate dataSaida;
     private BigDecimal valorVenda;
 
-    @ManyToMany(mappedBy = "saidas")
-    private List<Usuario> usuarios;
-
     @OneToOne(mappedBy = "saida")
     @JsonBackReference
     private ItemEstoque itemEstoque;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    @JsonBackReference
+    private Usuario usuario;
 }

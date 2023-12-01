@@ -25,8 +25,10 @@ public class Entrada implements Serializable {
     private LocalDate dataEntrada;
     private BigDecimal custoAquisicao;
 
-    @ManyToMany(mappedBy = "entradas")
-    private List<Usuario> usuarios;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    @JsonBackReference
+    private Usuario usuario;
 
     @OneToOne(mappedBy = "entrada")
     @JsonBackReference

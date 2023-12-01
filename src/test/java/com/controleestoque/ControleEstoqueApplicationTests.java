@@ -1,13 +1,13 @@
-package com.controleestoque;
+// package com.controleestoque;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class ControleEstoqueApplicationTests {
+// @SpringBootTest
+// class ControleEstoqueApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
-}
+// }

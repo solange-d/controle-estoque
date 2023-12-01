@@ -7,10 +7,12 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuario")
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -24,25 +26,16 @@ public class Usuario implements Serializable {
     private String senha;
     private boolean administrador;
 
-    @ManyToMany
-    @JoinTable(name = "responsavel_movimento",
-        joinColumns = {@JoinColumn(name = "id_usuario")},
-        inverseJoinColumns = {@JoinColumn(name = "id_movimento")}
-    )
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+    @JsonManagedReference
     private List<Movimento> movimentos;
 
-    @ManyToMany
-    @JoinTable(name = "responsavel_saida",
-            joinColumns = {@JoinColumn(name = "id_usuario")},
-            inverseJoinColumns = {@JoinColumn(name = "id_saida")}
-    )
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+    @JsonManagedReference
     private List<Saida> saidas;
 
-    @ManyToMany
-    @JoinTable(name = "responsavel_entrada",
-            joinColumns = {@JoinColumn(name = "id_usuario")},
-            inverseJoinColumns = {@JoinColumn(name = "id_entrada")}
-    )
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+    @JsonManagedReference
     private List<Entrada> entradas;
 
 }

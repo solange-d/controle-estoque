@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -22,6 +24,8 @@ public class Movimento implements Serializable {
 
     private LocalDate dataMovimentacao;
 
-    @ManyToMany(mappedBy = "movimentos")
-    private List<Usuario> usuarios;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    @JsonBackReference
+    private Usuario usuario;
 }
