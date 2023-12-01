@@ -1,1 +1,31 @@
-src/main/resources/application.properties
+# Arquivos de compilação
+target/
+build/
+
+# Arquivos de dependências gerados
+lib/
+*.jar
+
+# Arquivos específicos do IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# Arquivos de configuração
+application.properties
+application.yml
+
+# Logs
+logs/
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# Arquivos de sistema
+.DS_Store
+
+# Arquivos de upload
+uploads/
