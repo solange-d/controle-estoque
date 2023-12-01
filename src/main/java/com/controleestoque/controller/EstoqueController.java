@@ -1,6 +1,5 @@
 package com.controleestoque.controller;
 
-import com.controleestoque.entity.Estoque;
 import com.controleestoque.model.EstoqueRequest;
 import com.controleestoque.model.EstoqueResponse;
 import com.controleestoque.service.EstoqueService;

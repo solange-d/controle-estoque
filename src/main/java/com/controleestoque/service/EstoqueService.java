@@ -3,7 +3,7 @@ package com.controleestoque.service;
 import com.controleestoque.entity.Estoque;
 import com.controleestoque.exceptions.EstoqueNotFoundException;
 import com.controleestoque.mapper.EstoqueRequestToEntity;
-import com.controleestoque.mapper.EstoqueResposeToEntity;
+import com.controleestoque.mapper.EstoqueResponseToEntity;
 import com.controleestoque.model.EstoqueRequest;
 import com.controleestoque.model.EstoqueResponse;
 import com.controleestoque.repository.EstoqueRepository;
@@ -19,7 +19,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class EstoqueService {
     private EstoqueRequestToEntity estoqueRequestToEntity;
-    private EstoqueResposeToEntity estoqueResponseToEntity;
+    private EstoqueResponseToEntity estoqueResponseToEntity;
     private EstoqueRepository estoqueRepository;
 
     public UUID create(EstoqueRequest estoqueRequest) {
