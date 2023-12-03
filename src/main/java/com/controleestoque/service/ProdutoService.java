@@ -5,11 +5,8 @@ import com.controleestoque.exceptions.EnderecoNotFoundException;
 import com.controleestoque.exceptions.ProdutoNotFoundException;
 import com.controleestoque.mapper.ProdutoRequestToEntity;
 import com.controleestoque.mapper.ProdutoResponseToEntity;
-import com.controleestoque.model.EnderecoResponse;
-import com.controleestoque.model.FornecedorResponse;
 import com.controleestoque.model.ProdutoRequest;
 import com.controleestoque.model.ProdutoResponse;
-import com.controleestoque.repository.FornecedorRepository;
 import com.controleestoque.repository.ProdutoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -27,7 +24,6 @@ public class ProdutoService {
     private FornecedorService fornecedorService;
     private ProdutoRequestToEntity produtoRequestToEntity;
     private ProdutoResponseToEntity produtoResponseToEntity;
-    private FornecedorRepository fornecedorRepository;
 
 
     public ProdutoResponse getProdutoById(UUID idProduto){

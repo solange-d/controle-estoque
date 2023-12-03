@@ -1,6 +1,5 @@
 package com.controleestoque.service;
 
-import com.controleestoque.entity.Endereco;
 import com.controleestoque.entity.Fornecedor;
 import com.controleestoque.exceptions.FornecedorNotFoundException;
 import com.controleestoque.mapper.FornecedorRequestToEntity;
