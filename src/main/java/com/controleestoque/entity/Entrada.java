@@ -33,4 +33,10 @@ public class Entrada implements Serializable {
     @JsonBackReference
     private ItemEstoque itemEstoque;
 
+    public Usuario getUsuario() {
+        if(usuario == null) {
+            usuario = new Usuario();
+        }
+        return usuario;
+    }
 }

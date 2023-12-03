@@ -13,7 +13,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @Entity
-@Table
+@Table(name = "saida")
 public class Saida implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -32,4 +32,11 @@ public class Saida implements Serializable {
     @JoinColumn(name = "id_usuario", nullable = false)
     @JsonBackReference
     private Usuario usuario;
+
+    public Usuario getUsuario() {
+        if(usuario == null) {
+            usuario = new Usuario();
+        }
+        return usuario;
+    }
 }

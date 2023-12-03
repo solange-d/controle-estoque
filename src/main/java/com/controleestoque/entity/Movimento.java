@@ -27,4 +27,11 @@ public class Movimento implements Serializable {
     @JoinColumn(name = "id_usuario", nullable = false)
     @JsonBackReference
     private Usuario usuario;
+
+    public Usuario getUsuario() {
+        if(usuario == null) {
+            usuario = new Usuario();
+        }
+        return usuario;
+    }
 }
