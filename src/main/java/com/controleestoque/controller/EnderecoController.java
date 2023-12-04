@@ -18,7 +18,6 @@ import java.util.UUID;
 public class EnderecoController {
     private EnderecoService enderecoService;
 
-
     @PostMapping("/fornecedor/{idFornecedor}")
     public ResponseEntity<UUID> createEnderecoFornecedor(@PathVariable UUID idFornecedor, @RequestBody EnderecoRequest endereco){
         UUID response = enderecoService.createEnderecoFornecedor(idFornecedor, endereco);

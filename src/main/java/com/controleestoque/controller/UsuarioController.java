@@ -19,6 +19,8 @@ import lombok.AllArgsConstructor;
 
 import java.util.List;
 import java.util.UUID;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @AllArgsConstructor
@@ -55,5 +57,12 @@ public class UsuarioController {
         var requestedUsuario = usuarioService.getUsuarioById(idUsuario);
         return new ResponseEntity<>(requestedUsuario, HttpStatus.OK);
     }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UsuarioResponse> getUsuario(@PathVariable String email) {
+        var requestedUsuario = usuarioService.getUsuarioByEmail(email);
+        return new ResponseEntity<>(requestedUsuario, HttpStatus.OK);
+    }
+    
 
 }

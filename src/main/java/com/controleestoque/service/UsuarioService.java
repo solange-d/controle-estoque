@@ -35,6 +35,12 @@ public class UsuarioService {
         UsuarioResponse response = usuarioResponseToEntity.mapper(usuario);
         return response;
     }
+    
+    public UsuarioResponse getUsuarioByEmail(String email) {
+        Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(UsuarioNotFoundException::new);
+        UsuarioResponse response = usuarioResponseToEntity.mapper(usuario);
+        return response;
+    }
 
     public List<UsuarioResponse> getAll() {
         var usuarios = usuarioRepository.findAll();

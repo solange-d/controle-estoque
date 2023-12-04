@@ -29,12 +29,10 @@ public class FornecedorController {
         return new ResponseEntity<>(RequestedFornecedor, HttpStatus.OK);
     }
 
-
     @GetMapping("/fornecedores")
     public List<FornecedorResponse> getAll(){
         return fornecedorService.getAll();
     }
-
 
     @PutMapping("/{idFornecedor}")
     public ResponseEntity<FornecedorResponse> updateFornecedor(@PathVariable UUID idFornecedor,
