@@ -1,15 +1,19 @@
 package com.controleestoque.service;
 
+import com.controleestoque.entity.Fornecedor;
 import com.controleestoque.entity.Produto;
-import com.controleestoque.exceptions.EnderecoNotFoundException;
 import com.controleestoque.exceptions.ProdutoNotFoundException;
 import com.controleestoque.mapper.ProdutoRequestToEntity;
 import com.controleestoque.mapper.ProdutoResponseToEntity;
 import com.controleestoque.model.ProdutoRequest;
 import com.controleestoque.model.ProdutoResponse;
+import com.controleestoque.repository.FornecedorRepository;
 import com.controleestoque.repository.ProdutoRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,6 +28,7 @@ public class ProdutoService {
     private FornecedorService fornecedorService;
     private ProdutoRequestToEntity produtoRequestToEntity;
     private ProdutoResponseToEntity produtoResponseToEntity;
+    private FornecedorRepository fornecedorRepository;
 
 
     public ProdutoResponse getProdutoById(UUID idProduto){
@@ -64,6 +69,15 @@ public class ProdutoService {
         return produtoResponseList;
     }
 
+    public List<ProdutoResponse> getAllProdutos(){
+        var produtos = produtoRepository.findAll();
+        List<ProdutoResponse> produtoResponseList = new ArrayList<>();
+        for(Produto produto: produtos){
+            ProdutoResponse response = produtoResponseToEntity.mapper(produto);
+            produtoResponseList.add(response);
+        }
+        return produtoResponseList;
+    }
 
     public List<ProdutoResponse> getProdutosByName(String nome) {
         var produtos = produtoRepository.findProdutosByNome(nome);
@@ -81,37 +95,37 @@ public class ProdutoService {
         return produto.orElseThrow(ProdutoNotFoundException::new);
     }
 
-
-
     public ProdutoResponse update(UUID idFornecedor, UUID idProduto, ProdutoRequest produtoRequest) {
         try {
             Produto produto = getProdutoByIdEntity(idProduto);
             BeanUtils.copyProperties(produtoRequest, produto);
-            produto.setMarca(produtoRequest.getMarca());
-            produto.setNome(produtoRequest.getNome());
-            produto.setDescricao(produtoRequest.getDescricao());
-            produto.setEan(produtoRequest.getEan());
-            produto.setAltura(produtoRequest.getAltura());
-            produto.setLargura(produtoRequest.getLargura());
-            produto.setComprimento(produtoRequest.getComprimento());
-            produto.setPeso(produtoRequest.getPeso());
             produtoRepository.save(produto);
             var produtoResponse = new ProdutoResponse();
             BeanUtils.copyProperties(produto, produtoResponse);
             return produtoResponse;
-        } catch (RuntimeException notRuntimeException) {
+        } catch (EntityNotFoundException e) {
             throw new ProdutoNotFoundException();
+        } catch (DataIntegrityViolationException e) {
+            throw new RuntimeException("Erro ao atualizar o produto.", e);
         }
     }
 
     public void delete(UUID idFornecedor, UUID idProduto) {
-        try {
-            getProdutoByIdEntity(idProduto);
-            produtoRepository.deleteById(idProduto);
-        } catch (RuntimeException notFoundException) {
-            throw new EnderecoNotFoundException();
-        }
+    try {
+        Produto produto = getProdutoByIdEntity(idProduto);
 
+        Fornecedor fornecedor = fornecedorService.getById(idFornecedor);
+        fornecedor.getProdutos().remove(produto);
+        fornecedorRepository.save(fornecedor);
+
+        produto.getFornecedores().remove(fornecedor);
+        produtoRepository.save(produto);
+
+        produtoRepository.deleteById(idProduto);
+    } catch (RuntimeException notFoundException) {
+        throw new ProdutoNotFoundException();
     }
+}
+
 
 }

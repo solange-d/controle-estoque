@@ -21,6 +21,7 @@ import java.util.UUID;
 public class EnderecoService {
     private EnderecoRequestToEntity enderecoRequestToEntity;
     private EnderecoRepository enderecoRepository;
+    private FornecedorService fornecedorService;
     private FornecedorRepository fornecedorRepository;
 
 

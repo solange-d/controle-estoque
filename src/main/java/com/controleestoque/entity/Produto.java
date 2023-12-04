@@ -1,6 +1,5 @@
 package com.controleestoque.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -33,8 +32,7 @@ public class Produto implements Serializable {
     @JsonManagedReference
     private List<ItemEstoque> itens;
 
-    @ManyToMany(mappedBy = "produtos", cascade = CascadeType.REMOVE)
-    @JsonBackReference
+    @ManyToMany(mappedBy = "produtos")
     private List<Fornecedor> fornecedores;
 
 }

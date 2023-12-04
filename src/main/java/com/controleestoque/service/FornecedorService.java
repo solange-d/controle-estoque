@@ -66,6 +66,7 @@ public class FornecedorService {
             fornecedor.setCnpj(fornecedorRequest.getCnpj());
             fornecedor.setEmail(fornecedor.getEmail());
             fornecedor.setTelefone(fornecedor.getTelefone());
+            fornecedor.setFabricante(fornecedor.isFabricante());
             fornecedorRepository.save(fornecedor);
             var fornecedorResponse = new FornecedorResponse();
             BeanUtils.copyProperties(fornecedor, fornecedorResponse);

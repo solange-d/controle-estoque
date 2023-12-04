@@ -1,6 +1,5 @@
 package com.controleestoque.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -24,12 +23,12 @@ public class Fornecedor implements Serializable {
     private String cnpj;
     private String email;
     private String telefone;
+    private boolean fabricante = false;
 
     @ManyToMany
     @JoinTable(name = "fornecedor_produto",
     joinColumns = {@JoinColumn(name = "id_fornecedor")},
     inverseJoinColumns = {@JoinColumn(name = "id_produto")})
-    @JsonBackReference
     private List<Produto> produtos;
 
     @OneToMany(mappedBy = "fornecedor", cascade = CascadeType.REMOVE)

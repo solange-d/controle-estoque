@@ -31,6 +31,16 @@ public class ProdutoController {
         }
     }
 
+    @GetMapping("lista-produtos")
+    public ResponseEntity<List<ProdutoResponse>> getAllProdutos() {
+        try {
+            List<ProdutoResponse> response = produtoService.getAllProdutos();
+            return ResponseEntity.ok(response);
+        } catch (ProdutoNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
     @GetMapping("todos/{idFornecedor}")
     public ResponseEntity<List<ProdutoResponse>> getAll(@PathVariable UUID idFornecedor) {
         try {
@@ -70,7 +80,3 @@ public class ProdutoController {
 
 
 }
-
-
-
-
