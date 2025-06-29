@@ -12,7 +12,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SaidaRequest {
-    private UUID idSaida;
     private LocalDate dataSaida;
     private BigDecimal valorVenda;
     private UUID idUsuario;

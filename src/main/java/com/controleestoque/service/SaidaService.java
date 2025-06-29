@@ -1,12 +1,15 @@
 package com.controleestoque.service;
 
 import com.controleestoque.entity.Saida;
+import com.controleestoque.entity.Usuario;
 import com.controleestoque.exceptions.SaidaNotFoundException;
 import com.controleestoque.mapper.SaidaRequestToEntity;
 import com.controleestoque.mapper.SaidaResponseToEntity;
 import com.controleestoque.model.SaidaRequest;
 import com.controleestoque.model.SaidaResponse;
 import com.controleestoque.repository.SaidaRepository;
+import com.controleestoque.repository.UsuarioRepository;
+
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -22,11 +25,17 @@ public class SaidaService {
     private final SaidaRepository saidaRepository;
     private final SaidaRequestToEntity saidaRequestToEntity;
     private final SaidaResponseToEntity saidaResponseToEntity;
+    private final UsuarioRepository usuarioRepository;
 
     public UUID create(SaidaRequest saidaRequest) {
+        Usuario usuario = usuarioRepository.findById(saidaRequest.getIdUsuario())
+                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+
         Saida saida = saidaRequestToEntity.mapper(saidaRequest);
-        Saida savedSaida = saidaRepository.save(saida);
-        return savedSaida.getIdSaida();
+        saida.setUsuario(usuario); // agora sim: entidade gerenciada
+
+        Saida saved = saidaRepository.save(saida);
+        return saved.getIdSaida();
     }
 
     public SaidaResponse getSaidaById(UUID idSaida) {

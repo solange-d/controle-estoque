@@ -24,11 +24,11 @@ public class Fornecedor implements Serializable {
     private String cnpj;
     private String email;
     private String telefone;
+    private boolean fabricante;
 
     @ManyToMany
-    @JoinTable(name = "fornecedor_produto",
-    joinColumns = {@JoinColumn(name = "id_fornecedor")},
-    inverseJoinColumns = {@JoinColumn(name = "id_produto")})
+    @JoinTable(name = "fornecedor_produto", joinColumns = {
+            @JoinColumn(name = "id_fornecedor") }, inverseJoinColumns = { @JoinColumn(name = "id_produto") })
     @JsonBackReference
     private List<Produto> produtos;
 
