@@ -10,8 +10,8 @@ public class SaidaRequestToEntity {
 
     public Saida mapper(SaidaRequest saidaRequest) {
         var saida = new Saida();
-        BeanUtils.copyProperties(saidaRequest, saida);
-        saida.getUsuario().setIdUsuario(saidaRequest.getIdUsuario());
+        saida.setDataSaida(saidaRequest.getDataSaida());
+        saida.setValorVenda(saidaRequest.getValorVenda());
         return saida;
     }
 }
